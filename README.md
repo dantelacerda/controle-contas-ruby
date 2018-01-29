@@ -12,7 +12,11 @@
 * As validações do Frontend são feitas em JQuery;
 * As validações de regras de negócio estão sendo feitas no Backend;
 
-* Para executar o projeto basta realizar o "bundle install" e executar o "rails server" dentro da pasta;
+* Para execução do projeto, devem ser executados os seguintes comandos:
+
+- bundle install
+- bundle exec rake db:create db:migrate
+- rails server
 
 
 
