@@ -1,0 +1,111 @@
+
+<script language="JavaScript" type="text/javascript">
+
+$( document ).ready(function() {
+  var tipoconta = $('.tipoconta').find('select').val();
+  
+  if(tipoconta == 'matriz') {
+    $('.contamatriz').hide();
+  } else {
+    $('.contamatriz').show();
+  }
+});
+
+function confirmaInsercao()
+{
+   var nome = $('#contum_nome').val();
+   var numero = $('#contum_numero').val();
+   var cliente = $('.cliente').find('select').val();
+   var saldo = $('#contum_saldo').val();
+   
+   
+   if(nome == '' || nome == undefined) {
+     alert("Por favor, informe um nome para a conta");
+   } else  if(numero == '' || numero == undefined) {
+     alert("Por favor, informe um número para a conta");
+   } else  if(saldo == '' || saldo == undefined) {
+     alert("Por favor, informe o saldo existente na conta");
+   } else  if(cliente == '' || cliente == undefined) {
+     alert("Por favor, informe um cliente");
+   } else {
+     document.getElementById('formConta').submit();
+   }
+   
+}
+
+function verificaTipoConta() {
+  
+  var tipoconta = $('.tipoconta').find('select').val();
+  
+  if(tipoconta == 'matriz') {
+    $('.contamatriz').hide();
+  } else {
+    $('.contamatriz').show();
+  }
+}
+
+</script>
+
+<%= form_with(model: contum, local: true, id: "formConta", html: {class: "smart-green"}) do |form| %>
+  <% if contum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contum.errors.count, "error") %> A conta não pode ser salva:</h2>
+
+      <ul>
+      <% contum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h1>Conta</h1>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :contum_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero %>
+    <%= form.number_field :numero, id: :contum_numero %>
+  </div>
+
+  <div class="field">
+    <%= form.label :saldo %>
+    <%= form.text_field :saldo, id: :contum_saldo %>
+  </div>
+
+  <div class="field tipoconta">
+    Tipo de Cliente
+    <%= form.select :tipoconta, [["Filial", "filial"], ["Matriz", "matriz"]], {}, {:onChange =>"verificaTipoConta()"} %>
+  </div>
+  
+  <div class="field situacao">
+    Situação da conta
+    <%= form.select :situacao, [["Ativa", "ATIVA"], ["Bloqueada", "BLOQUEADA"], ["Cancelada", "CANCELADA"]], {} %>
+  </div>
+<br/>
+<br/>
+  <div class="field datacriacao">
+    Data de abertura da conta
+    <%= form.date_select :datacriacao, id: :contum_datacriacao %>
+  </div>
+
+<br/>
+<br/>
+   <div class="field contamatriz">
+    Conta Matriz
+    <%=  form.collection_select(:conta_id, @accountslist, :id, :nome) %>
+  </div>
+  
+   <div class="field cliente" >
+    Cliente
+    <%= form.collection_select(:cliente_id, @clienteslist, :id, :nome)  %>
+ 
+  </div>
+  <br/>
+  <br/>
+  <input type="button" class="button" value="Confirmar" onclick="confirmaInsercao()" />
+  <%= link_to 'Voltar', conta_path, class: "button" %>
+<% end %>

@@ -1,0 +1,37 @@
+<%= render './templatemenu' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @contum.nome %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @contum.numero %>
+</p>
+
+<p>
+  <strong>Saldo:</strong>
+  <%= @contum.saldo %>
+</p>
+
+<p>
+  <strong>Tipoconta:</strong>
+  <%= @contum.tipoconta %>
+</p>
+
+<p>
+  <strong>Datacriacao:</strong>
+  <%= @contum.datacriacao %>
+</p>
+
+<p>
+  <strong>Situacao:</strong>
+  <%= @contum.situacao %>
+</p>
+
+
+
+<%= link_to 'Editar', edit_contum_path(@contum) %> |
+<%= link_to 'Voltar', conta_path %>

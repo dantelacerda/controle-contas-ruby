@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  tipocliente: MyString
+  data: 2018-01-25
+  cpfcnpj: MyString
+  nomefantasia: MyString
+
+two:
+  nome: MyString
+  tipocliente: MyString
+  data: 2018-01-25
+  cpfcnpj: MyString
+  nomefantasia: MyString

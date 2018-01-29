@@ -1,0 +1,30 @@
+<%= render './templatemenu' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @cliente.nome %>
+</p>
+
+<p>
+  <strong>Tipocliente:</strong>
+  <%= @cliente.tipocliente %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @cliente.data %>
+</p>
+
+<p>
+  <strong>Cpfcnpj:</strong>
+  <%= @cliente.cpfcnpj %>
+</p>
+
+<p>
+  <strong>Nomefantasia:</strong>
+  <%= @cliente.nomefantasia %>
+</p>
+
+<%= link_to 'Editar', edit_cliente_path(@cliente) %> |
+<%= link_to 'Voltar', clientes_path %>

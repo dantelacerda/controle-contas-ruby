@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Transferencia</h1>
+
+
+<table>
+  
+  
+  
+</table>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Numero</th>
+      <th>Saldo</th>
+      <th>Tipoconta</th>
+      <th>Datacriacao</th>
+      <th>Situacao</th>
+      <th>Conta</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conta.each do |contum| %>
+      <tr>
+        <td><%= contum.nome %></td>
+        <td><%= contum.numero %></td>
+        <td><%= contum.saldo %></td>
+        <td><%= contum.tipoconta %></td>
+        <td><%= contum.datacriacao %></td>
+        <td><%= contum.situacao %></td>
+        <td><%= contum.conta_id %></td>
+        <td><%= link_to 'Show', contum %></td>
+        <td><%= link_to 'Edit', edit_contum_path(contum) %></td>
+        <td><%= link_to 'Destroy', contum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contum', new_contum_path %>

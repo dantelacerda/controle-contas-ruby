@@ -1,0 +1,19 @@
+<%= render './templatemenu' %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tipotransacao:</strong>
+  <%= @historico.tipotransacao %>
+</p>
+
+<p>
+  <strong>Aporte:</strong>
+  <%= @historico.aporte %>
+</p>
+
+<p>
+  <strong>Valor:</strong>
+  <%= @historico.valor %>
+</p>
+
+<%= link_to 'Voltar', historicos_path %>

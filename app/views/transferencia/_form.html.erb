@@ -1,0 +1,58 @@
+<%= form_with(model: contum, local: true) do |form| %>
+  <% if contum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(contum.errors.count, "error") %> A conta não pode ser salva:</h2>
+
+      <ul>
+      <% contum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :contum_nome %>
+  </div>
+
+  <div class="field">
+    <%= form.label :numero %>
+    <%= form.number_field :numero, id: :contum_numero %>
+  </div>
+
+  <div class="field">
+    <%= form.label :saldo %>
+    <%= form.text_field :saldo, id: :contum_saldo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipoconta %>
+    <%= form.text_field :tipoconta, id: :contum_tipoconta %>
+  </div>
+
+  <div class="field">
+    <%= form.label :datacriacao %>
+    <%= form.date_select :datacriacao, id: :contum_datacriacao %>
+  </div>
+
+  <div class="field">
+    <%= form.label :situacao %>
+    <%= form.text_field :situacao, id: :contum_situacao %>
+  </div>
+
+   <div class="field">
+    Conta Origem <br>
+    <%= form.collection_select(:contaorigem, @accountslist, :id, :nome) %>
+  </div>
+  
+   <div class="field">
+    Conta Destino <br>
+    <%= form.collection_select(:contadestino, @accountslist, :id, :nome) %>
+  </div>
+  
+ 
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

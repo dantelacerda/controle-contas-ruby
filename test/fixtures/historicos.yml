@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conta: one
+  conta: one
+  datatransacao: 2018-01-25
+  tipotransacao: MyString
+  aporte: MyString
+  valor: 
+
+two:
+  conta: two
+  conta: two
+  datatransacao: 2018-01-25
+  tipotransacao: MyString
+  aporte: MyString
+  valor: 

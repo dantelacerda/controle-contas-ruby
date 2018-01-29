@@ -1,0 +1,87 @@
+<script language="JavaScript" type="text/javascript">
+$( document ).ready(function() {
+    verificaTipoTransacao();
+});
+
+function verificaTipoTransacao() {
+  
+  var tipotransacao = $('.tipotransacao').find('select').val();
+  
+  if(tipotransacao == 'TR') {
+    $('.aporte').hide();
+  } else if(tipotransacao == 'AP') {
+    $('.aporte').show();
+  } else {
+       $('.aporte').hide();
+  }
+}
+
+function confirmaInsercao()
+{
+   var tipotransacao = $('.tipotransacao').find('select').val();
+   var historico_aporte = $('#historico_aporte').val();
+   var contaorigem = $('.contaorigem').find('select').val();
+   var contadestino = $('.contadestino').find('select').val();
+   var valor = $('#historico_valor').val();
+   
+   
+   if(contaorigem == '' || contaorigem == undefined) {
+     alert("Por favor, informe a conta de origem");
+   } else if(contadestino == '' || contadestino == undefined) {
+     alert("Por favor, informe a conta de destino");
+   } else if(tipotransacao == "AP" && historico_aporte == "") {
+     alert("Por favor, informe um código de Aporte");
+   } else  if(valor == '' || valor == undefined) {
+     alert("Por favor, informe um valor");
+   } else {
+     document.getElementById('formHistorico').submit();
+   }
+   
+}
+</script>
+
+<%= form_with(model: historico, local: true, id: "formHistorico", html: {class: "smart-green"}) do |form| %>
+  <% if historico.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(historico.errors.count, "Erro!") %> A transferência não pôde ser concluída:</h2>
+
+      <ul>
+      <% historico.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h1>Transferência</h1>
+
+  <div class="field contaorigem">
+    Conta Origem <br>
+    <%= form.select :contaorigem, Contum.select(:nome, :id).where(situacao: 'ATIVA').collect {|c| [c.nome, c.id]} %>
+  </div>
+  
+   <div class="field contadestino">
+    Conta Destino <br>
+    <%= form.select :contadestino, Contum.select(:nome, :id).where(situacao: 'ATIVA').collect {|c| [c.nome, c.id]} %>
+  </div>
+
+  <div class="field tipotransacao">
+    Tipo de Transação
+    <%= form.select :tipotransacao, [["Transferência", "TR"], ["Aporte", "AP"]], {}, {:onChange =>"verificaTipoTransacao()"} %>
+    
+  </div>
+
+  <div class="field aporte">
+    Código do Aporte
+    <%= form.text_field :aporte, id: :historico_aporte %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor %>
+    <%= form.text_field :valor, id: :historico_valor, :data => {:mask=> '999-999-9999'} %>
+  </div>
+  <br/>
+  <br/>
+<input type="button" class="button" value="Realizar Transferência" onclick="confirmaInsercao()" />
+  <%= link_to 'Voltar', historicos_path, class: "button" %>
+<% end %>

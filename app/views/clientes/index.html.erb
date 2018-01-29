@@ -1,0 +1,40 @@
+<%= render './templatemenu' %>
+<%= form_for(Cliente.new, html: {class: "smart-green"}) do |f| %>
+<p id="notice"><%= notice %></p>
+
+<h1>Clientes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Tipo de Cliente</th>
+      <th>Data</th>
+      <th>CPF / CNPJ</th>
+      <th>Nome Fantasia</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @clientes.each do |cliente| %>
+      <tr>
+        <td><%= cliente.nome %></td>
+        <td><%= cliente.tipocliente %></td>
+        <td><%= cliente.data %></td>
+        <td><%= cliente.cpfcnpj %></td>
+        <td><%= cliente.nomefantasia %></td>
+        <td><%= link_to image_tag("edit-icon.png", border: 0), edit_cliente_path(cliente), class: "tablebutton" %></td>
+        <td><%= link_to link_to image_tag("delete-icon.png", border: 0), cliente, method: :delete, data: { confirm: 'Tem Certeza?' }, class: "tablebutton" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+
+<%= link_to 'Novo Cliente', new_cliente_path, class: "button" %>
+
+<% end %>

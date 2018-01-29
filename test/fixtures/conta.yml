@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  numero: 1
+  saldo: 
+  tipoconta: MyString
+  datacriacao: 2018-01-25
+  situacao: MyString
+  conta: one
+
+two:
+  nome: MyString
+  numero: 1
+  saldo: 
+  tipoconta: MyString
+  datacriacao: 2018-01-25
+  situacao: MyString
+  conta: two

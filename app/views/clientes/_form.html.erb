@@ -1,0 +1,113 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<script language="JavaScript" type="text/javascript">
+
+$( document ).ready(function() {
+    $('.nomefantasia').hide();
+   
+   var cpfcnpj = $("#cpfcnpj");
+    //    cpfcnpj.mask('000.000.000-00', {reverse: true});   
+ 
+ 
+  var CpfCnpjMaskBehavior = function (val) {
+			return val.replace(/\D/g, '').length <= 11 ? '000.000.000-009' : '00.000.000/0000-00';
+		},
+    cpfCnpjpOptions = {
+    	onKeyPress: function(val, e, field, options) {
+      	cpfcnpj.mask(CpfCnpjMaskBehavior.apply({}, arguments), options);
+      }
+    };
+});
+
+function confirmaInsercao()
+{
+   var nome = $('#cliente_nome').val();
+   var cpfcnpj = $('#cpfcnpj').val();
+   var tipocliente = $('.tipocliente').find('select').val();
+   var cliente_nomefantasia = $('#cliente_nomefantasia').val();
+   
+   if(nome == '' || nome == undefined) {
+     alert("Por favor, informe o nome do cliente");
+   } else if(cpfcnpj == '' || cpfcnpj == undefined) {
+     if(tipocliente == 'PF') {
+       alert("Por favor, informe o CPF do cliente");
+     } else {
+       alert("Por favor, informe o CNPJ do cliente");
+     }
+   } else if(tipocliente == 'PJ' && cliente_nomefantasia == '') {
+     alert("Por favor, informe o Nome Fantasia do cliente");
+   } else {
+     document.getElementById('formCliente').submit();
+   }
+   
+ 
+}
+
+function verificaTipoCliente() {
+  
+  var tipocliente = $('.tipocliente').find('select').val();
+  
+  if(tipocliente == 'PF') {
+    $('.datanascimento').show();
+    $('.nomefantasia').hide();
+  } else {
+    $('.nomefantasia').show();
+    $('.datanascimento').hide();
+  }
+}
+
+</script>
+
+<%= form_with(model: cliente, local: true, id: "formCliente", html: {class: "smart-green"}) do |form| %>
+  <% if cliente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(cliente.errors.count, "error") %> prohibited this cliente from being saved:</h2>
+
+      <ul>
+      <% cliente.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <h1>Cliente</h1>
+ 
+  <div class="field">
+    <%= form.label :nome %>
+    <%= form.text_field :nome, id: :cliente_nome %>
+  </div>
+
+  <div class="field tipocliente">
+    Tipo de Cliente
+    <%= form.select :tipocliente, [["Pessoa Física", "PF"], ["Pessoa Jurídica", "PJ"]], {}, {:onChange =>"verificaTipoCliente()"} %>
+    
+  </div>
+
+  <br/>
+  <br/>
+  
+  <div class="field datanascimento">
+    Data de Nascimento
+    <%= form.date_select :data, id: :cliente_data %>
+  </div>
+  
+  <br/>
+  <br/>
+
+  <div class="field cpf">
+    CPF / CNPJ
+    <%= form.text_field :cpfcnpj, id: :cpfcnpj %>
+  </div>
+
+  <div class="field nomefantasia">
+    Nome Fantasia
+    <%= form.text_field :nomefantasia, id: :cliente_nomefantasia %>
+  </div>
+
+  <br/>
+  <br/>
+  
+  <input type="button" class="button" value="Confirmar" onclick="confirmaInsercao()" />
+  <%= link_to 'Voltar', clientes_path, class: "button" %>
+  
+<% end %>

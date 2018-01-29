@@ -1,0 +1,42 @@
+
+<%= render './templatemenu' %>
+<%= form_for(Contum.new, html: {class: "smart-green"}) do |f| %>
+<p id="notice"><%= notice %></p>
+
+<h1>Conta</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Numero</th>
+      <th>Saldo</th>
+      <th>Tipo de Conta</th>
+      <th>Datacriacao</th>
+      <th>Situação</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @conta.each do |contum| %>
+      <tr>
+        <td><%= contum.nome %></td>
+        <td><%= contum.numero %></td>
+        <td><%= contum.saldo %></td>
+        <td><%= contum.tipoconta %></td>
+        <td><%= contum.datacriacao %></td>
+        <td><%= contum.situacao %></td>
+        <td><%= link_to image_tag("edit-icon.png", border: 0), edit_contum_path(contum), class: "tablebutton" %></td>
+        <td><%= link_to image_tag("delete-icon.png", border: 0), contum, method: :delete, data: { confirm: 'Tem certeza disso?' }, class: "tablebutton" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+
+<%= link_to 'Nova Conta', new_contum_path, class: "button" %>
+<% end %>

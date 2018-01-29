@@ -1,0 +1,42 @@
+<%= render './templatemenu' %>
+<%= form_for(Historico.new, html: {class: "smart-green"}) do |f| %>
+<p id="notice"><%= notice %></p>
+
+<h1>Historicos de Transferências</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Conta Origem</th>
+      <th>Conta Destino</th>
+      <th>Data da Transação</th>
+      <th>Tipo de Transação</th>
+      <th>Valor</th>
+      <th>Situação</th>
+      <th colspan="1"></th>
+      
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historicos.each do |historico| %>
+      <tr>
+        <td><%= historico.contaorigem.nome %></td>
+        <td><%= historico.contadestino.nome %></td>
+        <td><%= historico.datatransacao %></td>
+        <td><%= historico.tipotransacao %></td>
+        <td><%= historico.valor %></td>
+        <td><%= historico.status %></td>
+        <td><%= link_to 'Estornar', edit_historico_path(historico), class: "tablebutton" %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+<br>
+
+<%= link_to 'Nova Transação', new_historico_path, class: "button" %>
+<% end %>
