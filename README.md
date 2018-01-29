@@ -1,24 +1,19 @@
-# README
+ - Sistema de Controle de Contas.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* A função da aplicação é o gerenciamento de valores entre contas.
 
-Things you may want to cover:
+- O sistema possui 4 Módulos:
+- Cadastro de Clientes(Que podem ser Pessoa Física ou Jurídica);
+- Cadastro de Contas(Que podem ser filiais ou matrizes);
+- Realização de Transferências,Aportes e Estorno;
+- Visualização de Histórico de Transferências e Aportes; 
 
-* Ruby version
+* A aplicação foi desenvolvida utilizando Ruby on Rails com banco de dados SQLITE3;
+* As validações do Frontend são feitas em JQuery;
+* As validações de regras de negócio estão sendo feitas no Backend;
 
-* System dependencies
+* Para executar o projeto basta realizar o "bundle install" e executar o "rails server" dentro da pasta;
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
