@@ -18,6 +18,12 @@
 - bundle exec rake db:create db:migrate
 - rails server
 
+* Considerações sobre funcionalidades do sistema:
+
+- Para acessar o Sistemam, com o servidor rodando, acessa através de: http://localhost:3000/clientes;
+- Todos as telas podem ser acessadas pelos Menus que se encontram na parte superior das telas; (Cliente, Conta, Histórico, Transferência)
+- Tenha em mente que Toda conta deve ter um Cliente;(Que pode ser uma Pessoa Física ou Pessoa Jurídica)
+- O fluxo de uso é: Cadastrar os Clientes, Cadastrar as Contas, Realizar a Transferência entre contas e Visualizar as operações de Transferência ou Estornar as mesmas pela tela de históricos;
 
 
 

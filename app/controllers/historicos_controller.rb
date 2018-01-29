@@ -1,7 +1,6 @@
 class HistoricosController < ApplicationController
   before_action :set_historico, only: [:show, :edit, :update, :destroy]
-  before_action :set_options_for_select, only: [:new, :edit, :update, :create]
-
+  
   # GET /historicos
   # GET /historicos.json
   def index
@@ -177,10 +176,7 @@ class HistoricosController < ApplicationController
     def set_historico
       @historico = Historico.find(params[:id])
     end
-    def set_options_for_select
-      @accountslist = Contum.find(1)
-    end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def historico_params
       params.require(:historico).permit(:contaorigem, :contadestino, :datatransacao, :tipotransacao, :aporte, :valor)
